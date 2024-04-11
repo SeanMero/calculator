@@ -43,9 +43,24 @@ numArray.forEach(element => {
     element.addEventListener("click", function(e) {
         display.push(e.target.textContent);
         showDisplay = display.join("");
-        displayBox.textContent = showDisplay;
+        displayBox.textContent = truncate(showDisplay);
     });
 });
+
+//round answer if too long
+truncate = function(num) {
+    let numArray = num.toString().split("");
+    let bye = numArray.length - 7;
+    if (numArray.length > 8) {
+        if (Number(numArray[8]) < 5) {
+            numArray.splice(8, bye, "...")
+        } else {
+            num[7] += 1;
+            numArray.splice(8, bye, "...")
+        }
+        return numArray.join("");
+    } else {return num}
+};
 
 //store showDisplay as num1 when user presses "+-*/", or do math if user presses more operators instead of "="
 const opCollection = document.getElementsByClassName("operator");
@@ -61,7 +76,7 @@ opArray.forEach(element => {
             num2 = Number(showDisplay);
             display = [];
             showDisplay = operate(num1, num2, operator);
-            displayBox.textContent = showDisplay;
+            displayBox.textContent = truncate(showDisplay);
             num1 = Number(showDisplay);
             num2 = "";
             operator = e.target.textContent;
@@ -75,7 +90,7 @@ doMath.addEventListener("click", function(e) {
     num2 = Number(showDisplay);
     display = [];
     showDisplay = operate(num1, num2, operator);
-    displayBox.textContent = showDisplay;
+    displayBox.textContent = truncate(showDisplay);
     num1 = "";
     num2 = "";
     operator = "";
