@@ -16,8 +16,8 @@ const divide = function(a, b) {
 };
 
 //collect inputs and decide what math to do when the user presses "="
-let num1 = 0;
-let num2 = 0;
+let num1 = "";
+let num2 = "";
 let operator = "";
 
 const operate = function(num1, num2, operator) {
@@ -47,23 +47,36 @@ numArray.forEach(element => {
     });
 });
 
-//store showDisplay as num1 when user presses "+-*/"
+//store showDisplay as num1 when user presses "+-*/", or do math if user presses more operators instead of "="
 const opCollection = document.getElementsByClassName("operator");
 const opArray = Array.from(opCollection);
 
 opArray.forEach(element => {
     element.addEventListener("click", function(e) {
-        num1 = Number(showDisplay);
-        display = [];
-        operator = e.target.textContent;
+        if (operator === "") {
+            num1 = Number(showDisplay);
+            display = [];
+            operator = e.target.textContent;
+        } else {
+            num2 = Number(showDisplay);
+            display = [];
+            showDisplay = operate(num1, num2, operator);
+            displayBox.textContent = showDisplay;
+            num1 = Number(showDisplay);
+            num2 = "";
+            operator = e.target.textContent;
+        }
     });
 });
 
-//store showDisplay as num2 and do math when user presses "="
+//store showDisplay as num2 and do math when user presses "=", and then reset variables
 doMath = document.getElementById("equal");
 doMath.addEventListener("click", function(e) {
     num2 = Number(showDisplay);
     display = [];
     showDisplay = operate(num1, num2, operator);
     displayBox.textContent = showDisplay;
+    num1 = "";
+    num2 = "";
+    operator = "";
 });
