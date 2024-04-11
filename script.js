@@ -99,3 +99,14 @@ doMath.addEventListener("click", function(e) {
     operator = "";
     }
 });
+
+//clear button clears display and variables
+clear = document.getElementById("clear");
+clear.addEventListener("click", function(e) {
+    displayBox.textContent = 0;
+    num1 = "";
+    num2 = "";
+    operator = "";
+    display = [];
+    showDisplay = 0;
+});
