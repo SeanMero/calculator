@@ -45,9 +45,13 @@ const numArray = Array.from(numCollection);
 
 numArray.forEach(element => {
     element.addEventListener("click", function(e) {
-        display.push(e.target.textContent);
-        showDisplay = display.join("");
-        displayBox.textContent = truncate(showDisplay);
+        if (display.includes(".") && e.target.textContent === ".") {
+            display.push("")
+        } else {
+            display.push(e.target.textContent);
+            showDisplay = display.join("");
+            displayBox.textContent = truncate(showDisplay);
+        }
     });
 });
 
