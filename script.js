@@ -28,7 +28,11 @@ const operate = function(num1, num2, operator) {
     } else if (operator == "*") {
         return multiply (num1, num2);
     } else if (operator == "/") {
+        if (num2 == 0) {
+            return "Hey! Don't divide by zero!"
+        } else {
         return divide (num1, num2);
+        }
     }
 };
 
@@ -49,17 +53,21 @@ numArray.forEach(element => {
 
 //round answer if too long
 truncate = function(num) {
-    let numArray = num.toString().split("");
-    let bye = numArray.length - 7;
-    if (numArray.length > 8) {
-        if (Number(numArray[8]) < 5) {
-            numArray.splice(8, bye, "...")
-        } else {
-            num[7] += 1;
-            numArray.splice(8, bye, "...")
-        }
-        return numArray.join("");
-    } else {return num}
+    if (typeof(num) != Number) {
+        return num
+    } else {
+        let numArray = num.toString().split("");
+        let bye = numArray.length - 7;
+        if (numArray.length > 8) {
+            if (Number(numArray[8]) < 5) {
+                numArray.splice(8, bye, "...")
+            } else {
+                num[7] += 1;
+                numArray.splice(8, bye, "...")
+            }
+            return numArray.join("");
+        } else {return num}
+    }
 };
 
 //store showDisplay as num1 when user presses "+-*/", or do math if user presses more operators instead of "="
