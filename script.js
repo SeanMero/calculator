@@ -87,6 +87,9 @@ opArray.forEach(element => {
 //store showDisplay as num2 and do math when user presses "=", and then reset variables
 doMath = document.getElementById("equal");
 doMath.addEventListener("click", function(e) {
+    if (operator === "") {
+        displayBox.textContent = truncate(showDisplay);
+    } else {
     num2 = Number(showDisplay);
     display = [];
     showDisplay = operate(num1, num2, operator);
@@ -94,4 +97,5 @@ doMath.addEventListener("click", function(e) {
     num1 = "";
     num2 = "";
     operator = "";
+    }
 });
