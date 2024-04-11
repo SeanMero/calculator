@@ -113,7 +113,7 @@ doMath.addEventListener("click", function(e) {
 });
 
 //clear button clears display and variables
-clear = document.getElementById("clear");
+const clear = document.getElementById("clear");
 clear.addEventListener("click", function(e) {
     displayBox.textContent = 0;
     num1 = "";
@@ -121,4 +121,11 @@ clear.addEventListener("click", function(e) {
     operator = "";
     display = [];
     showDisplay = 0;
+});
+
+const backspace = document.getElementById("backspace");
+backspace.addEventListener("click", function(e) {
+    display.pop();
+    showDisplay = display.join("");
+    displayBox.textContent = truncate(showDisplay);
 });
