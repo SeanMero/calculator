@@ -1,16 +1,41 @@
-.display {
-
+#display {
+  background-color: lightgray;
+  color: black;
+  border: 1px solid black;
+  width: 550px;
 }
 
 .numbers {
   display: flex;
+  gap: 10px;
+  width: 900px;
 }
 
 .column {
   display: flex;
   flex-flow: column;
+  justify-content: space-around;
+  flex: 1;
+  gap: 5px;
 }
 
 .row {
-  
+  display: flex;
+  flex: 1;
+  gap: 5px;
+}
+
+.number, 
+#backspace, 
+#clear {
+  flex: 1;
+  width: 100px;
+  background-color: rgb(75, 75, 75);
+  color: white;
+}
+
+.operator,
+#equal {
+  background-color: orange;
+  width: 100px;
 }
